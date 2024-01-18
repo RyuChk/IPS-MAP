@@ -1,0 +1,14 @@
+FROM golang:1.21-bookworm AS builder
+
+ENV GOFLAGS=-mod=vendor
+
+COPY . /build
+WORKDIR /build
+RUN make build
+
+FROM debian:bookworm
+USER 0
+COPY --from=builder /build/.bin/rssi-grpc /opt/rssi-grpc
+USER 1000
+WORKDIR /
+CMD ["/opt/."]
