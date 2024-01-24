@@ -18,6 +18,10 @@ func ProvideCacheConfig() CacheConfig {
 	return provideConfig(CacheConfig{})
 }
 
+func ProvideMinioConfig() MinioConfig {
+	return provideConfig(MinioConfig{})
+}
+
 func provideConfig[T any](cfg T) T {
 	envconfig.MustProcess("", &cfg)
 	return cfg

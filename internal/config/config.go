@@ -20,7 +20,7 @@ type CacheConfig struct {
 }
 
 type MinioConfig struct {
-	Bucket string `envconfig:"MINIO_BUCKET" default:"document-service"`
+	Bucket string `envconfig:"MINIO_BUCKET" default:"map"`
 }
 
 func LoadConfig() {

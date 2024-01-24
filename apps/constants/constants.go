@@ -2,7 +2,8 @@ package constants
 
 type CollectionStage string
 
+type RedisCachePrefix string
+
 var (
-	CollectionStageSingle   CollectionStage = "SINGLE"   //Testing RSSI reciever stage
-	CollectionStageMultiple CollectionStage = "MULTIPLE" //All aps collection
+	MapURLCachePrefix RedisCachePrefix = "MAP:IMAGE:FLOOR:"
 )

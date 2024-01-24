@@ -10,26 +10,45 @@ import (
 	"git.cie.com/ips/wire-provider/grpc/provider"
 	"github.com/RyuChk/ips-map-service/cmd/map-grpc/internal/handler"
 	"github.com/RyuChk/ips-map-service/cmd/map-grpc/server"
+	"github.com/RyuChk/ips-map-service/internal/config"
 	"github.com/RyuChk/ips-map-service/internal/di"
+	"github.com/RyuChk/ips-map-service/internal/repository/minio"
+	"github.com/RyuChk/ips-map-service/internal/repository/mongodb"
+	"github.com/RyuChk/ips-map-service/internal/repository/mongodb/mapCollectionRepo"
+	"github.com/RyuChk/ips-map-service/internal/repository/mongodb/mapURLCollectionRepo"
+	"github.com/RyuChk/ips-map-service/internal/services/mapService"
 	"github.com/google/wire"
 )
 
 // Injectors from di.go:
 
 func InitializeContainer() (*Container, func(), error) {
-	mapServiceServer := handler.ProvideMapServer()
+	minioConfig := config.ProvideMinioXConfig()
+	configMinioConfig := config.ProvideMinioConfig()
+	service := minio.ProvideMinioService(minioConfig, configMinioConfig)
+	mongodbConfig := config.ProvideMongoxConfig()
+	connection, cleanup, err := mongodb.ProvideMongoDBService(mongodbConfig)
+	if err != nil {
+		return nil, nil, err
+	}
+	repository := mapurlcollectionrepo.ProvideMapURLCollectionRepo(connection)
+	mapcollectionrepoRepository := mapcollectionrepo.ProvideMapURLCollectionRepo(connection)
+	mapserviceService := mapservice.ProvideMapURLService(service, repository, mapcollectionrepoRepository)
+	mapServiceServer := handler.ProvideMapServer(mapserviceService)
 	handlers := &handler.Handlers{
 		Map: mapServiceServer,
 	}
 	grpcServerCustomizer := server.ProvideGRPCServerCustomizer(handlers)
-	grpcServer, cleanup, err := provider.ProvideGRPCServer(grpcServerCustomizer)
+	grpcServer, cleanup2, err := provider.ProvideGRPCServer(grpcServerCustomizer)
 	if err != nil {
+		cleanup()
 		return nil, nil, err
 	}
 	container := &Container{
 		server: grpcServer,
 	}
 	return container, func() {
+		cleanup2()
 		cleanup()
 	}, nil
 }
