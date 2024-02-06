@@ -32,7 +32,7 @@ func (s *MapV1Impl) AddFloor(ctx context.Context, req *mapv1.AddFloorRequest) (*
 }
 
 func (h *MapV1Impl) GetFloorList(ctx context.Context, req *mapv1.GetFloorListRequest) (*mapv1.GetFloorListResponse, error) {
-	floors, err := h.mapService.GetFloorListByBuilding(ctx, req.Building)
+	floors, err := h.mapService.GetFloorListByBuilding(ctx, req.Building, mapper.ToRole[req.Role])
 	if err != nil {
 		return nil, err
 	}
@@ -49,7 +49,7 @@ func (h *MapV1Impl) AddMapURL(ctx context.Context, req *mapv1.AddMapURLRequest) 
 }
 
 func (h *MapV1Impl) GetMapURL(ctx context.Context, req *mapv1.GetMapURLRequest) (*mapv1.GetMapURLResponse, error) {
-	m, err := h.mapService.GetMapURLFromKey(ctx, int(req.FloorNumber), req.Building)
+	m, err := h.mapService.GetMapURLFromKey(ctx, int(req.FloorNumber), req.Building, mapper.ToRole[req.Role])
 	if err != nil {
 		return nil, err
 	}

@@ -18,6 +18,7 @@ func ToGetFloorListResponse(body []models.Map) *mapv1.GetFloorListResponse {
 			Building:    v.Building,
 			Symbol:      v.Symbol,
 			Number:      int32(v.Number),
+			IsAdmin:     v.IsAdmin,
 		}
 	}
 
@@ -32,6 +33,7 @@ func ToAddMapURLResponse(body models.MapImageURL) *mapv1.AddMapURLResponse {
 			Building:    body.MapDetail.Building,
 			Number:      int32(body.MapDetail.Number),
 			Symbol:      body.MapDetail.Symbol,
+			IsAdmin:     body.MapDetail.IsAdmin,
 		},
 		Url:       body.URL,
 		UpdatedAt: timestamppb.New(body.UpdatedAt),
@@ -47,6 +49,7 @@ func ToGetMapURLResponse(body models.MapImageURL) *mapv1.GetMapURLResponse {
 			Building:    body.MapDetail.Building,
 			Number:      int32(body.MapDetail.Number),
 			Symbol:      body.MapDetail.Symbol,
+			IsAdmin:     body.MapDetail.IsAdmin,
 		},
 		Url:       body.URL,
 		UpdatedAt: timestamppb.New(body.UpdatedAt),

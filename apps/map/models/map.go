@@ -8,6 +8,7 @@ type Map struct {
 	Number      int       `bson:"number"`      //Floor number
 	Symbol      string    `bson:"symbol"`
 	Building    string    `bson:"building"`   //Name of the building
+	IsAdmin     bool      `bson:"is_admin"`   //Only admin can view
 	CreatedAt   time.Time `bson:"created_at"` //Create time
 	UpdatedAt   time.Time `bson:"updated_at"` //Update time
 }
