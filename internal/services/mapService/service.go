@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/RyuChk/ips-map-service/apps/constants"
 	"github.com/RyuChk/ips-map-service/apps/map/models"
 	"github.com/RyuChk/ips-map-service/internal/repository/minio"
 	"github.com/RyuChk/ips-map-service/internal/repository/mongodb"
@@ -16,10 +17,10 @@ import (
 
 //go:generate mockgen -source=service.go -destination=mock_mapService/mock_service.go -package=mock_mapservice
 type Service interface {
-	GetFloorListByBuilding(ctx context.Context, building string) ([]models.Map, error)
+	GetFloorListByBuilding(ctx context.Context, building string, role constants.UserRole) ([]models.Map, error)
 	AddFloorToDB(ctx context.Context, body models.Map) error
 	AddMapURL(ctx context.Context, floor int, building, url string) (models.MapImageURL, error)
-	GetMapURLFromKey(ctx context.Context, floor int, building string) (models.MapImageURL, error)
+	GetMapURLFromKey(ctx context.Context, floor int, building string, role constants.UserRole) (models.MapImageURL, error)
 }
 
 type service struct {
@@ -36,8 +37,12 @@ func ProvideMapURLService(minio minio.Service, mapURLCollectionRepo mapurlcollec
 	}
 }
 
-func (s *service) GetFloorListByBuilding(ctx context.Context, building string) ([]models.Map, error) {
+func (s *service) GetFloorListByBuilding(ctx context.Context, building string, role constants.UserRole) ([]models.Map, error) {
 	filter := mongodb.Filter{"building": building}
+	if role != constants.AdminRole {
+		f, _ := mongodb.AddFilter(filter, mongodb.Filter{"is_admin": false})
+		filter = f
+	}
 	floors, err := s.mapCollectionRepo.Find(ctx, filter)
 	if err != nil {
 		return []models.Map{}, status.Error(codes.NotFound, err.Error())
@@ -47,16 +52,13 @@ func (s *service) GetFloorListByBuilding(ctx context.Context, building string) (
 }
 
 func (s *service) AddMapURL(ctx context.Context, floor int, building, url string) (models.MapImageURL, error) {
-	//Check if already exist
 	checkExistFilter := mongodb.Filter{"key": fmt.Sprintf("%s-%d", building, floor)}
 	_, err := s.mapURLCollectionRepo.FindOne(ctx, checkExistFilter)
 	if err == nil {
 		return models.MapImageURL{}, status.Error(codes.AlreadyExists, "map url information is already exist in database")
 	}
 
-	//Get map detail for checking that floor is exist or not
-	filter := mongodb.Filter{"building": building}
-	mongodb.AddFilter(filter, mongodb.Filter{"number": floor})
+	filter, _ := mongodb.AddFilter(mongodb.Filter{"building": building}, mongodb.Filter{"number": floor})
 	m, err := s.mapCollectionRepo.FindOne(ctx, filter)
 	if err != nil {
 		return models.MapImageURL{}, nil
@@ -77,20 +79,21 @@ func (s *service) AddMapURL(ctx context.Context, floor int, building, url string
 	return model, nil
 }
 
-func (s *service) GetMapURLFromKey(ctx context.Context, floor int, building string) (models.MapImageURL, error) {
-	//Check if already exist
+func (s *service) GetMapURLFromKey(ctx context.Context, floor int, building string, role constants.UserRole) (models.MapImageURL, error) {
 	checkExistFilter := mongodb.Filter{"key": fmt.Sprintf("%s-%d", building, floor)}
 	mapURL, err := s.mapURLCollectionRepo.FindOne(ctx, checkExistFilter)
 	if err != nil {
 		return models.MapImageURL{}, status.Error(codes.NotFound, "cannot found map url in database make sure your input is correct")
 	}
 
-	//Get map detail for checking that floor is exist or not
-	filter := mongodb.Filter{"building": building}
-	mongodb.AddFilter(filter, mongodb.Filter{"number": floor})
+	filter, _ := mongodb.AddFilter(mongodb.Filter{"building": building}, mongodb.Filter{"number": floor})
 	mapDeatil, err := s.mapCollectionRepo.FindOne(ctx, filter)
 	if err != nil {
 		return models.MapImageURL{}, status.Error(codes.NotFound, "cannot found map detail in database make sure your input is correct")
+	}
+
+	if mapDeatil.IsAdmin && role != constants.AdminRole {
+		return models.MapImageURL{}, status.Error(codes.PermissionDenied, "your not have permission to view this data")
 	}
 
 	return models.MapImageURL{
@@ -103,8 +106,7 @@ func (s *service) GetMapURLFromKey(ctx context.Context, floor int, building stri
 }
 
 func (s *service) AddFloorToDB(ctx context.Context, body models.Map) error {
-	filter := mongodb.Filter{"building": body.Building}
-	mongodb.AddFilter(filter, mongodb.Filter{"number": body.Number})
+	filter, _ := mongodb.AddFilter(mongodb.Filter{"building": body.Building}, mongodb.Filter{"number": body.Number})
 	_, err := s.mapCollectionRepo.FindOne(ctx, filter)
 	if err == nil {
 		return status.Error(codes.AlreadyExists, "floor information is already exist in database")
