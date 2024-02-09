@@ -3,10 +3,10 @@ package mapper
 import (
 	"time"
 
-	"github.com/RyuChk/ips-map-service/apps/constants"
-	"github.com/RyuChk/ips-map-service/apps/map/models"
+	"github.com/RyuChk/ips-map-service/internal/constants"
 	mapv1 "github.com/RyuChk/ips-map-service/internal/gen/proto/ips/map/v1"
 	userv1 "github.com/RyuChk/ips-map-service/internal/gen/proto/ips/shared/user/v1"
+	"github.com/RyuChk/ips-map-service/internal/models"
 )
 
 var ToRole = map[userv1.Role]constants.UserRole{
