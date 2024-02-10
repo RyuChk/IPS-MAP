@@ -13,6 +13,7 @@ RUN make
 FROM debian:bookworm
 USER 0
 COPY --from=builder /build/.bin/map-grpc /opt/map-grpc
+COPY --from=builder /build/.bin/presence-grpc /opt/presence-grpc
 USER 1000
 WORKDIR /
 CMD ["/opt/."]

@@ -39,7 +39,7 @@ test:
 	@printf \\e[1m"Run test"\\e[0m\\n
 	@ENV=unittest $(GO) test $(GOTESTFLAGS) ./...
 
-build: .bin/map-grpc
+build: .bin/map-grpc .bin/presence-grpc
 
 go.sum:
 	@printf \\e[1m"go mod tidy"\\e[0m\\n
@@ -48,3 +48,7 @@ go.sum:
 .bin/map-grpc: go.mod go.sum $(GO_FILES)
 	@printf \\e[1m"Build .bin/map-grpc"\\e[0m\\n
 	@cd cmd/map-grpc && $(GO) build -o ../../.bin/map-grpc .
+
+.bin/presence-grpc: go.mod go.sum $(GO_FILES)
+	@printf \\e[1m"Build .bin/presence-grpc"\\e[0m\\n
+	@cd cmd/presence-grpc && $(GO) build -o ../../.bin/presence-grpc .
