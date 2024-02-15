@@ -8,7 +8,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	models "github.com/RyuChk/ips-map-service/apps/map/models"
+	models "github.com/RyuChk/ips-map-service/internal/models"
 	mongodb "github.com/RyuChk/ips-map-service/internal/repository/mongodb"
 	gomock "github.com/golang/mock/gomock"
 )

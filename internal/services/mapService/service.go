@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/RyuChk/ips-map-service/apps/constants"
-	"github.com/RyuChk/ips-map-service/apps/map/models"
+	"github.com/RyuChk/ips-map-service/internal/constants"
+	"github.com/RyuChk/ips-map-service/internal/models"
 	"github.com/RyuChk/ips-map-service/internal/repository/minio"
 	"github.com/RyuChk/ips-map-service/internal/repository/mongodb"
 	mapcollectionrepo "github.com/RyuChk/ips-map-service/internal/repository/mongodb/mapCollectionRepo"

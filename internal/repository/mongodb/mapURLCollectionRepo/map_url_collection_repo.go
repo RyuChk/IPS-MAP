@@ -4,7 +4,7 @@ import (
 	"context"
 
 	wiremongo "git.cie.com/ips/wire-provider/mongodb"
-	"github.com/RyuChk/ips-map-service/apps/map/models"
+	"github.com/RyuChk/ips-map-service/internal/models"
 	"github.com/RyuChk/ips-map-service/internal/repository/mongodb"
 	"github.com/rs/zerolog/log"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -12,7 +12,6 @@ import (
 )
 
 //go:generate mockgen -source=map_url_collection_repo.go -destination=mock_mapURLCollectionRepo/mock_mapurlcollectionrepo.go -package=mock_mapurlcollectionrepo
-
 const mapURLCollectionRepo = "map-url-collection"
 
 type Repository interface {

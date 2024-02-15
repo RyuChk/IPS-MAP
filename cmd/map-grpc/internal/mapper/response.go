@@ -1,8 +1,8 @@
 package mapper
 
 import (
-	"github.com/RyuChk/ips-map-service/apps/map/models"
 	mapv1 "github.com/RyuChk/ips-map-service/internal/gen/proto/ips/map/v1"
+	"github.com/RyuChk/ips-map-service/internal/models"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 

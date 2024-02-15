@@ -8,7 +8,8 @@ import (
 	context "context"
 	reflect "reflect"
 
-	models "github.com/RyuChk/ips-map-service/apps/map/models"
+	constants "github.com/RyuChk/ips-map-service/internal/constants"
+	models "github.com/RyuChk/ips-map-service/internal/models"
 	gomock "github.com/golang/mock/gomock"
 )
 
@@ -65,31 +66,31 @@ func (mr *MockServiceMockRecorder) AddMapURL(ctx, floor, building, url interface
 }
 
 // GetFloorListByBuilding mocks base method.
-func (m *MockService) GetFloorListByBuilding(ctx context.Context, building string) ([]models.Map, error) {
+func (m *MockService) GetFloorListByBuilding(ctx context.Context, building string, role constants.UserRole) ([]models.Map, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetFloorListByBuilding", ctx, building)
+	ret := m.ctrl.Call(m, "GetFloorListByBuilding", ctx, building, role)
 	ret0, _ := ret[0].([]models.Map)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetFloorListByBuilding indicates an expected call of GetFloorListByBuilding.
-func (mr *MockServiceMockRecorder) GetFloorListByBuilding(ctx, building interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) GetFloorListByBuilding(ctx, building, role interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFloorListByBuilding", reflect.TypeOf((*MockService)(nil).GetFloorListByBuilding), ctx, building)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFloorListByBuilding", reflect.TypeOf((*MockService)(nil).GetFloorListByBuilding), ctx, building, role)
 }
 
 // GetMapURLFromKey mocks base method.
-func (m *MockService) GetMapURLFromKey(ctx context.Context, floor int, building string) (models.MapImageURL, error) {
+func (m *MockService) GetMapURLFromKey(ctx context.Context, floor int, building string, role constants.UserRole) (models.MapImageURL, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetMapURLFromKey", ctx, floor, building)
+	ret := m.ctrl.Call(m, "GetMapURLFromKey", ctx, floor, building, role)
 	ret0, _ := ret[0].(models.MapImageURL)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // GetMapURLFromKey indicates an expected call of GetMapURLFromKey.
-func (mr *MockServiceMockRecorder) GetMapURLFromKey(ctx, floor, building interface{}) *gomock.Call {
+func (mr *MockServiceMockRecorder) GetMapURLFromKey(ctx, floor, building, role interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetMapURLFromKey", reflect.TypeOf((*MockService)(nil).GetMapURLFromKey), ctx, floor, building)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetMapURLFromKey", reflect.TypeOf((*MockService)(nil).GetMapURLFromKey), ctx, floor, building, role)
 }

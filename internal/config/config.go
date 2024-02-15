@@ -23,6 +23,10 @@ type MinioConfig struct {
 	Bucket string `envconfig:"MINIO_BUCKET" default:"map"`
 }
 
+type UserTrackingConfig struct {
+	UserTrackingTTL time.Duration `envconfig:"USER_TRACKING_TTL" default:"5s"`
+}
+
 func LoadConfig() {
 	if currentEnvironment, ok := os.LookupEnv("ENV"); ok {
 		_, b, _, _ := runtime.Caller(0)
