@@ -1,8 +1,8 @@
 package di
 
 import (
-	wireminio "git.cie.com/ips/wire-provider/minio"
-	wiremongo "git.cie.com/ips/wire-provider/mongodb"
+	wireminio "git.cie-ips.com/ips/wire-provider/minio"
+	wiremongo "git.cie-ips.com/ips/wire-provider/mongodb"
 	"github.com/RyuChk/ips-map-service/internal/config"
 	"github.com/RyuChk/ips-map-service/internal/repository/cache"
 	"github.com/RyuChk/ips-map-service/internal/repository/minio"

@@ -1,22 +1,22 @@
 module github.com/RyuChk/ips-map-service
 
-go 1.21.3
+go 1.21.5
 
 require (
-	git.cie.com/ips/wire-provider v1.0.0
+	git.cie-ips.com/ips/wire-provider v1.0.1
 	github.com/allegro/bigcache/v3 v3.1.0
 	github.com/golang/mock v1.6.0
-	github.com/google/wire v0.5.0
+	github.com/google/wire v0.6.0
 	github.com/joho/godotenv v1.5.1
 	github.com/kelseyhightower/envconfig v1.4.0
-	github.com/minio/minio-go/v7 v7.0.66
-	github.com/redis/go-redis/v9 v9.4.0
-	github.com/rs/zerolog v1.31.0
+	github.com/minio/minio-go/v7 v7.0.67
+	github.com/redis/go-redis/v9 v9.5.1
+	github.com/rs/zerolog v1.32.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.8.4
-	go.mongodb.org/mongo-driver v1.13.1
-	golang.org/x/exp v0.0.0-20240112132812-db7319d0e0e3
-	google.golang.org/grpc v1.61.0
+	go.mongodb.org/mongo-driver v1.14.0
+	golang.org/x/exp v0.0.0-20240222234643-814bf88cf225
+	google.golang.org/grpc v1.62.0
 	google.golang.org/protobuf v1.32.0
 )
 
@@ -30,8 +30,7 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
-	github.com/google/subcommands v1.0.1 // indirect
-	github.com/google/uuid v1.5.0 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/providers/prometheus v1.0.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.0.1 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -63,13 +62,11 @@ require (
 	go.opentelemetry.io/otel/sdk v1.21.0 // indirect
 	go.opentelemetry.io/otel/trace v1.21.0 // indirect
 	golang.org/x/crypto v0.18.0 // indirect
-	golang.org/x/mod v0.14.0 // indirect
 	golang.org/x/net v0.20.0 // indirect
 	golang.org/x/sync v0.6.0 // indirect
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
-	golang.org/x/tools v0.17.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20231106174013-bbf56f31fb17 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20240123012728-ef4313101c80 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

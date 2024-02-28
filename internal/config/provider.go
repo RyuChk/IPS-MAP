@@ -1,9 +1,9 @@
 package config
 
 import (
-	wireminio "git.cie.com/ips/wire-provider/minio"
-	wiremongo "git.cie.com/ips/wire-provider/mongodb"
-	"git.cie.com/ips/wire-provider/redis"
+	wireminio "git.cie-ips.com/ips/wire-provider/minio"
+	wiremongo "git.cie-ips.com/ips/wire-provider/mongodb"
+	"git.cie-ips.com/ips/wire-provider/redis"
 	"github.com/kelseyhightower/envconfig"
 )
 

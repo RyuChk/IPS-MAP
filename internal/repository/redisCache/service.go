@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	wireredis "git.cie.com/ips/wire-provider/redis"
+	wireredis "git.cie-ips.com/ips/wire-provider/redis"
 	"github.com/redis/go-redis/v9"
 	"github.com/rs/zerolog/log"
 )

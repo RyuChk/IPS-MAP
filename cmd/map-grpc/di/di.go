@@ -4,7 +4,7 @@
 package di
 
 import (
-	"git.cie.com/ips/wire-provider/grpc/provider"
+	"git.cie-ips.com/ips/wire-provider/grpc/provider"
 	internalDi "github.com/RyuChk/ips-map-service/internal/di"
 	"github.com/google/wire"
 )

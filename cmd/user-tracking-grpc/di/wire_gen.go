@@ -7,7 +7,7 @@
 package di
 
 import (
-	"git.cie.com/ips/wire-provider/grpc/provider"
+	"git.cie-ips.com/ips/wire-provider/grpc/provider"
 	"github.com/RyuChk/ips-map-service/cmd/user-tracking-grpc/internal/handler"
 	"github.com/RyuChk/ips-map-service/cmd/user-tracking-grpc/server"
 	"github.com/RyuChk/ips-map-service/internal/config"

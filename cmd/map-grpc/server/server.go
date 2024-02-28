@@ -1,8 +1,8 @@
 package server
 
 import (
-	wiregrpc "git.cie.com/ips/wire-provider/grpc"
-	"git.cie.com/ips/wire-provider/grpc/provider"
+	wiregrpc "git.cie-ips.com/ips/wire-provider/grpc"
+	"git.cie-ips.com/ips/wire-provider/grpc/provider"
 	"github.com/RyuChk/ips-map-service/cmd/map-grpc/internal/handler"
 )
 

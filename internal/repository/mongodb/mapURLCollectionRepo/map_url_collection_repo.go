@@ -3,7 +3,7 @@ package mapurlcollectionrepo
 import (
 	"context"
 
-	wiremongo "git.cie.com/ips/wire-provider/mongodb"
+	wiremongo "git.cie-ips.com/ips/wire-provider/mongodb"
 	"github.com/RyuChk/ips-map-service/internal/models"
 	"github.com/RyuChk/ips-map-service/internal/repository/mongodb"
 	"github.com/rs/zerolog/log"

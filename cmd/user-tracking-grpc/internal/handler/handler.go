@@ -1,7 +1,7 @@
 package handler
 
 import (
-	wiregrpc "git.cie.com/ips/wire-provider/grpc"
+	wiregrpc "git.cie-ips.com/ips/wire-provider/grpc"
 	mapv1 "github.com/RyuChk/ips-map-service/internal/gen/proto/ips/map/v1"
 )
 
