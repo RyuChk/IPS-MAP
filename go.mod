@@ -3,7 +3,7 @@ module github.com/RyuChk/ips-map-service
 go 1.21.5
 
 require (
-	git.cie-ips.com/ips/wire-provider v1.0.1
+	git.cie-ips.com/ips/wire-provider v1.0.2
 	github.com/allegro/bigcache/v3 v3.1.0
 	github.com/golang/mock v1.6.0
 	github.com/google/wire v0.5.0

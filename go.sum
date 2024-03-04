@@ -4,6 +4,8 @@ cloud.google.com/go/compute/metadata v0.2.3 h1:mg4jlk7mCAj6xXp9UJ4fjI9VUI5rubuGB
 cloud.google.com/go/compute/metadata v0.2.3/go.mod h1:VAV5nSsACxMJvgaAuX6Pk2AawlZn8kiOGuCv6gTkwuA=
 git.cie-ips.com/ips/wire-provider v1.0.1 h1:L3Lx6nC6sRUfrjiBVudxl9EgudU/VsibdxULQVUCbGk=
 git.cie-ips.com/ips/wire-provider v1.0.1/go.mod h1:ECk4doorR3KJ24oX14Mfeh3m3BLc5zR/be8+Y2FniEY=
+git.cie-ips.com/ips/wire-provider v1.0.2 h1:2uzFjJfKpvoOFnJ9K0m5PH86Ca5rlpHy1w5umt3OCFE=
+git.cie-ips.com/ips/wire-provider v1.0.2/go.mod h1:ECk4doorR3KJ24oX14Mfeh3m3BLc5zR/be8+Y2FniEY=
 github.com/allegro/bigcache/v3 v3.1.0 h1:H2Vp8VOvxcrB91o86fUSVJFqeuz8kpyyB02eH3bSzwk=
 github.com/allegro/bigcache/v3 v3.1.0/go.mod h1:aPyh7jEvrog9zAwx5N7+JUQX5dZTSGpxF1LAR4dr35I=
 github.com/beorn7/perks v1.0.1 h1:VlbKKnNfV8bJzeqoa4cOKqO6bYr3WgKZxO8Z16+hsOM=

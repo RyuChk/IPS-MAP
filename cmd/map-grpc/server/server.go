@@ -16,7 +16,10 @@ func (gc *grpcServerCustomizer) Register(server wiregrpc.Server) error {
 }
 
 func (gc *grpcServerCustomizer) Configrue(builder wiregrpc.Builder) error {
-	builder.WithServiceName("map-service").WithListenAddr(":6000")
+	builder.WithServiceName("map-service").
+		WithListenAddr(":6000").
+		WithMetric(true).
+		WithLoggin(true)
 	return nil
 }
 
