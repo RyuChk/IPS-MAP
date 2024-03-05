@@ -16,7 +16,9 @@ func (gc *grpcServerCustomizer) Register(server wiregrpc.Server) error {
 }
 
 func (gc *grpcServerCustomizer) Configrue(builder wiregrpc.Builder) error {
-	builder.WithServiceName("user-tracking-service").WithListenAddr(":6000")
+	builder.WithServiceName("user-tracking-service").
+		WithListenAddr(":6000").
+		WithMetric(true)
 	return nil
 }
 
