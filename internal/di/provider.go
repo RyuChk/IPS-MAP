@@ -7,8 +7,9 @@ import (
 	"github.com/RyuChk/ips-map-service/internal/repository/cache"
 	"github.com/RyuChk/ips-map-service/internal/repository/minio"
 	"github.com/RyuChk/ips-map-service/internal/repository/mongodb"
-	mapcollectionrepo "github.com/RyuChk/ips-map-service/internal/repository/mongodb/mapCollectionRepo"
-	mapurlcollectionrepo "github.com/RyuChk/ips-map-service/internal/repository/mongodb/mapURLCollectionRepo"
+	buildingcollectionrepo "github.com/RyuChk/ips-map-service/internal/repository/mongodb/buildingCollectionRepo"
+	floorcollectionrepo "github.com/RyuChk/ips-map-service/internal/repository/mongodb/floorCollectionRepo"
+	floordetailcollectionrepo "github.com/RyuChk/ips-map-service/internal/repository/mongodb/floorDetailCollectionRepo"
 	rediscache "github.com/RyuChk/ips-map-service/internal/repository/redisCache"
 	mapservice "github.com/RyuChk/ips-map-service/internal/services/mapService"
 	usertrackingservice "github.com/RyuChk/ips-map-service/internal/services/userTrackingService"
@@ -23,8 +24,9 @@ var DatabaseSet = wire.NewSet(
 )
 
 var ProviderSet = wire.NewSet(
-	mapurlcollectionrepo.ProvideMapURLCollectionRepo,
-	mapcollectionrepo.ProvideMapURLCollectionRepo,
+	buildingcollectionrepo.ProvideBuildingCollectionRepo,
+	floorcollectionrepo.ProvideFloorCollectionRepo,
+	floordetailcollectionrepo.ProvideMapURLCollectionRepo,
 	mapservice.ProvideMapURLService,
 	usertrackingservice.ProvideUserTrackingService,
 )
