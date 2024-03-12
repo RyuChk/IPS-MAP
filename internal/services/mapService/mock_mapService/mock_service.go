@@ -64,6 +64,21 @@ func (mr *MockServiceMockRecorder) AddFloorToDB(ctx, body interface{}) *gomock.C
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddFloorToDB", reflect.TypeOf((*MockService)(nil).AddFloorToDB), ctx, body)
 }
 
+// GetBuildingInfo mocks base method.
+func (m *MockService) GetBuildingInfo(ctx context.Context, building string, role constants.UserRole) (models.Building, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetBuildingInfo", ctx, building, role)
+	ret0, _ := ret[0].(models.Building)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetBuildingInfo indicates an expected call of GetBuildingInfo.
+func (mr *MockServiceMockRecorder) GetBuildingInfo(ctx, building, role interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBuildingInfo", reflect.TypeOf((*MockService)(nil).GetBuildingInfo), ctx, building, role)
+}
+
 // GetBuildingList mocks base method.
 func (m *MockService) GetBuildingList(ctx context.Context, admin bool) ([]models.Building, error) {
 	m.ctrl.T.Helper()

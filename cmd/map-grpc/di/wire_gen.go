@@ -17,6 +17,7 @@ import (
 	"github.com/RyuChk/ips-map-service/internal/repository/mongodb/buildingCollectionRepo"
 	"github.com/RyuChk/ips-map-service/internal/repository/mongodb/floorCollectionRepo"
 	"github.com/RyuChk/ips-map-service/internal/repository/mongodb/floorDetailCollectionRepo"
+	"github.com/RyuChk/ips-map-service/internal/repository/redisCache"
 	"github.com/RyuChk/ips-map-service/internal/services/mapService"
 	"github.com/google/wire"
 )
@@ -35,7 +36,13 @@ func InitializeContainer() (*Container, func(), error) {
 	repository := buildingcollectionrepo.ProvideBuildingCollectionRepo(connection)
 	floorcollectionrepoRepository := floorcollectionrepo.ProvideFloorCollectionRepo(connection)
 	floordetailcollectionrepoRepository := floordetailcollectionrepo.ProvideMapURLCollectionRepo(connection)
-	mapserviceService := mapservice.ProvideMapURLService(service, repository, floorcollectionrepoRepository, floordetailcollectionrepoRepository)
+	redisConfig := config.ProvideRedisCacheConfig()
+	rediscacheService, err := rediscache.ProvideCacheService(redisConfig)
+	if err != nil {
+		cleanup()
+		return nil, nil, err
+	}
+	mapserviceService := mapservice.ProvideMapURLService(service, repository, floorcollectionrepoRepository, floordetailcollectionrepoRepository, rediscacheService)
 	mapServiceServer := handler.ProvideMapServer(mapserviceService)
 	handlers := &handler.Handlers{
 		Map: mapServiceServer,

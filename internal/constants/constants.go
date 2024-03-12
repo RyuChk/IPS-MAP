@@ -5,8 +5,10 @@ type CollectionStage string
 type RedisCachePrefix string
 
 var (
-	MapURLCachePrefix  RedisCachePrefix = "MAP:IMAGE:FLOOR:"
-	UserTrackingPrefix RedisCachePrefix = "TRACKING:"
+	MapURLCachePrefix   RedisCachePrefix = "MAP:IMAGE:FLOOR:"
+	UserTrackingPrefix  RedisCachePrefix = "MAP:TRACKING:"
+	BuildingCachePrefix RedisCachePrefix = "MAP:BUILDING:"
+	FloorCachePrefix    RedisCachePrefix = "MAP:FLOOR:"
 )
 
 func (r RedisCachePrefix) String() string {
