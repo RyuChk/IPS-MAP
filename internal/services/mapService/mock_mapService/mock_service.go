@@ -36,8 +36,22 @@ func (m *MockService) EXPECT() *MockServiceMockRecorder {
 	return m.recorder
 }
 
+// AddBuildingInfoToDB mocks base method.
+func (m *MockService) AddBuildingInfoToDB(ctx context.Context, body models.Building) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "AddBuildingInfoToDB", ctx, body)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// AddBuildingInfoToDB indicates an expected call of AddBuildingInfoToDB.
+func (mr *MockServiceMockRecorder) AddBuildingInfoToDB(ctx, body interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddBuildingInfoToDB", reflect.TypeOf((*MockService)(nil).AddBuildingInfoToDB), ctx, body)
+}
+
 // AddFloorToDB mocks base method.
-func (m *MockService) AddFloorToDB(ctx context.Context, body models.Map) error {
+func (m *MockService) AddFloorToDB(ctx context.Context, body models.Floor) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AddFloorToDB", ctx, body)
 	ret0, _ := ret[0].(error)
@@ -50,26 +64,56 @@ func (mr *MockServiceMockRecorder) AddFloorToDB(ctx, body interface{}) *gomock.C
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddFloorToDB", reflect.TypeOf((*MockService)(nil).AddFloorToDB), ctx, body)
 }
 
-// AddMapURL mocks base method.
-func (m *MockService) AddMapURL(ctx context.Context, floor int, building, url string) (models.MapImageURL, error) {
+// GetBuildingInfo mocks base method.
+func (m *MockService) GetBuildingInfo(ctx context.Context, building string, role constants.UserRole) (models.Building, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "AddMapURL", ctx, floor, building, url)
-	ret0, _ := ret[0].(models.MapImageURL)
+	ret := m.ctrl.Call(m, "GetBuildingInfo", ctx, building, role)
+	ret0, _ := ret[0].(models.Building)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// AddMapURL indicates an expected call of AddMapURL.
-func (mr *MockServiceMockRecorder) AddMapURL(ctx, floor, building, url interface{}) *gomock.Call {
+// GetBuildingInfo indicates an expected call of GetBuildingInfo.
+func (mr *MockServiceMockRecorder) GetBuildingInfo(ctx, building, role interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddMapURL", reflect.TypeOf((*MockService)(nil).AddMapURL), ctx, floor, building, url)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBuildingInfo", reflect.TypeOf((*MockService)(nil).GetBuildingInfo), ctx, building, role)
+}
+
+// GetBuildingList mocks base method.
+func (m *MockService) GetBuildingList(ctx context.Context, admin bool) ([]models.Building, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetBuildingList", ctx, admin)
+	ret0, _ := ret[0].([]models.Building)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetBuildingList indicates an expected call of GetBuildingList.
+func (mr *MockServiceMockRecorder) GetBuildingList(ctx, admin interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetBuildingList", reflect.TypeOf((*MockService)(nil).GetBuildingList), ctx, admin)
+}
+
+// GetFloorDetailFromKey mocks base method.
+func (m *MockService) GetFloorDetailFromKey(ctx context.Context, floor int, building string, role constants.UserRole) (models.FloorDetail, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "GetFloorDetailFromKey", ctx, floor, building, role)
+	ret0, _ := ret[0].(models.FloorDetail)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// GetFloorDetailFromKey indicates an expected call of GetFloorDetailFromKey.
+func (mr *MockServiceMockRecorder) GetFloorDetailFromKey(ctx, floor, building, role interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFloorDetailFromKey", reflect.TypeOf((*MockService)(nil).GetFloorDetailFromKey), ctx, floor, building, role)
 }
 
 // GetFloorListByBuilding mocks base method.
-func (m *MockService) GetFloorListByBuilding(ctx context.Context, building string, role constants.UserRole) ([]models.Map, error) {
+func (m *MockService) GetFloorListByBuilding(ctx context.Context, building string, role constants.UserRole) ([]models.Floor, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetFloorListByBuilding", ctx, building, role)
-	ret0, _ := ret[0].([]models.Map)
+	ret0, _ := ret[0].([]models.Floor)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -80,17 +124,16 @@ func (mr *MockServiceMockRecorder) GetFloorListByBuilding(ctx, building, role in
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetFloorListByBuilding", reflect.TypeOf((*MockService)(nil).GetFloorListByBuilding), ctx, building, role)
 }
 
-// GetMapURLFromKey mocks base method.
-func (m *MockService) GetMapURLFromKey(ctx context.Context, floor int, building string, role constants.UserRole) (models.MapImageURL, error) {
+// UpsertFloorDetail mocks base method.
+func (m *MockService) UpsertFloorDetail(ctx context.Context, body models.FloorDetail) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetMapURLFromKey", ctx, floor, building, role)
-	ret0, _ := ret[0].(models.MapImageURL)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
+	ret := m.ctrl.Call(m, "UpsertFloorDetail", ctx, body)
+	ret0, _ := ret[0].(error)
+	return ret0
 }
 
-// GetMapURLFromKey indicates an expected call of GetMapURLFromKey.
-func (mr *MockServiceMockRecorder) GetMapURLFromKey(ctx, floor, building, role interface{}) *gomock.Call {
+// UpsertFloorDetail indicates an expected call of UpsertFloorDetail.
+func (mr *MockServiceMockRecorder) UpsertFloorDetail(ctx, body interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetMapURLFromKey", reflect.TypeOf((*MockService)(nil).GetMapURLFromKey), ctx, floor, building, role)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpsertFloorDetail", reflect.TypeOf((*MockService)(nil).UpsertFloorDetail), ctx, body)
 }

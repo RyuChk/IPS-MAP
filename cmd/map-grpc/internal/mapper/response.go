@@ -3,55 +3,72 @@ package mapper
 import (
 	mapv1 "github.com/RyuChk/ips-map-service/internal/gen/proto/ips/map/v1"
 	"github.com/RyuChk/ips-map-service/internal/models"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func ToGetFloorListResponse(body []models.Map) *mapv1.GetFloorListResponse {
-	result := &mapv1.GetFloorListResponse{
-		Floors: make([]*mapv1.FloorDetail, len(body)),
+func ToGetBuildingListResponse(body []models.Building) *mapv1.GetBuildingListResponse {
+	result := &mapv1.GetBuildingListResponse{
+		Buildings: make([]*mapv1.Building, 0),
 	}
 
-	for i, v := range body {
-		result.Floors[i] = &mapv1.FloorDetail{
+	for _, v := range body {
+		result.Buildings = append(result.Buildings, &mapv1.Building{
 			Name:        v.Name,
 			Description: v.Description,
-			Building:    v.Building,
-			Symbol:      v.Symbol,
-			Number:      int32(v.Number),
-			IsAdmin:     v.IsAdmin,
-		}
+			OriginLat:   v.OriginLat,
+			OriginLong:  v.OriginLong,
+			IsAdmin:     false,
+		})
 	}
 
 	return result
 }
 
-func ToAddMapURLResponse(body models.MapImageURL) *mapv1.AddMapURLResponse {
-	return &mapv1.AddMapURLResponse{
-		Detail: &mapv1.FloorDetail{
-			Name:        body.MapDetail.Name,
-			Description: body.MapDetail.Description,
-			Building:    body.MapDetail.Building,
-			Number:      int32(body.MapDetail.Number),
-			Symbol:      body.MapDetail.Symbol,
-			IsAdmin:     body.MapDetail.IsAdmin,
+func ToGetFloorInfoResponse(body models.FloorDetail) *mapv1.GetFloorInfoResponse {
+	result := &mapv1.GetFloorInfoResponse{
+		Info: &mapv1.FloorDetail{
+			Name:        body.Info.Name,
+			Description: body.Info.Description,
+			Floor:       int32(body.Info.Floor),
+			Building:    body.Info.Building,
+			Symbol:      body.Info.Symbol,
+			IsAdmin:     body.Info.IsAdmin,
 		},
-		Url:       body.URL,
-		UpdatedAt: timestamppb.New(body.UpdatedAt),
-		CreatedAt: timestamppb.New(body.CreatedAt),
+		Rooms: make([]*mapv1.RoomDetail, 0),
 	}
+
+	for _, v := range body.RoomList {
+		result.Rooms = append(result.Rooms, &mapv1.RoomDetail{
+			RoomId:      v.RoomID,
+			Name:        v.Name,
+			Description: v.Description,
+			Latitude:    v.Latitude,
+			Longitude:   v.Longitude,
+		})
+	}
+
+	return result
 }
 
-func ToGetMapURLResponse(body models.MapImageURL) *mapv1.GetMapURLResponse {
-	return &mapv1.GetMapURLResponse{
-		Detail: &mapv1.FloorDetail{
-			Name:        body.MapDetail.Name,
-			Description: body.MapDetail.Description,
-			Building:    body.MapDetail.Building,
-			Number:      int32(body.MapDetail.Number),
-			Symbol:      body.MapDetail.Symbol,
-			IsAdmin:     body.MapDetail.IsAdmin,
-		},
-		Url:       body.URL,
-		UpdatedAt: timestamppb.New(body.UpdatedAt),
+func ToGetBuildingInfoResponse(body models.Building) *mapv1.GetBuildingInfoResponse {
+	result := &mapv1.GetBuildingInfoResponse{
+		Name:        body.Name,
+		Description: body.Description,
+		OriginLat:   body.OriginLat,
+		OriginLong:  body.OriginLong,
+		Floors:      make([]*mapv1.FloorDetail, len(body.FloorList)),
+		IsAdmin:     false,
 	}
+
+	for i, v := range body.FloorList {
+		result.Floors[i] = &mapv1.FloorDetail{
+			Name:        v.Name,
+			Description: v.Description,
+			Floor:       int32(v.Floor),
+			Building:    v.Building,
+			Symbol:      v.Symbol,
+			IsAdmin:     v.IsAdmin,
+		}
+	}
+
+	return result
 }
