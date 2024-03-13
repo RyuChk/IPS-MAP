@@ -6,8 +6,8 @@ GO_TESTFLAGS ?= -tags "test$(if $)"
 GOTESTFLAGS ?= -tags "test$(if $(GO_TAGS),$(comma)$(GO_TAGS),)" -short -race
 GOPRIVATE=*.cie-ips.com
 GOINSECURE=*
-HTTP_PROXY=go-athens-athens-proxy.go-athens.svc.cluster.local:80
-HTTPS_PROXY=go-proxy.cie-ips.com
+# HTTP_PROXY=http://go-athens-athens-proxy.go-athens.svc.cluster.local
+# HTTPS_PROXY=https://go-proxy.cie-ips.com
 GOPROXY=https://go-proxy.cie-ips.com
 
 all: generate build
