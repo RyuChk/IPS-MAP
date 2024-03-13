@@ -1,4 +1,4 @@
-image: golang:1.21.4-bookworm 
+image: golang:1.21.5-bookworm 
 include:
   - project: srv/ci-cd-templates
     file:
@@ -14,8 +14,7 @@ include:
 variables:
   OUTPUT_NAME: __bin__/$CI_PROJECT_NAME
   GOPRIVATE: "git.cie-ips.com"
-  GOINSECURE: "*.cie-ips.com"
-  GOPROXY: direct
+  GOINSECURE: "*"
   SERVICE_NAME: map-service
   SKIP_BUILD:
     description: Skip build docker image
