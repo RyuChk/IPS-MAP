@@ -15,6 +15,7 @@ variables:
   OUTPUT_NAME: __bin__/$CI_PROJECT_NAME
   GOPRIVATE: "git.cie-ips.com"
   GOINSECURE: "*.cie-ips.com"
+  GOPROXY: direct
   SERVICE_NAME: map-service
   SKIP_BUILD:
     description: Skip build docker image
