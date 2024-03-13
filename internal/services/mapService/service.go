@@ -121,10 +121,18 @@ func (s *service) GetBuildingInfo(ctx context.Context, building string, role con
 
 		var value interface{} = json
 		s.redisClient.Set(ctx, buildingCachePrefix, value, time.Hour)
-	} else {
-		if err := json.Unmarshal([]byte(raw), &result); err != nil {
+
+		floorList, err := s.GetFloorListByBuilding(ctx, building, role)
+		if err != nil {
 			return models.Building{}, status.Error(codes.Internal, err.Error())
 		}
+
+		result.FloorList = floorList
+		return result, nil
+	}
+
+	if err := json.Unmarshal([]byte(raw), &result); err != nil {
+		return models.Building{}, status.Error(codes.Internal, err.Error())
 	}
 
 	floorList, err := s.GetFloorListByBuilding(ctx, building, role)
