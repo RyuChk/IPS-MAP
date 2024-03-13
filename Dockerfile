@@ -1,4 +1,4 @@
-FROM golang:1.21-bookworm AS builder
+FROM golang:1.21.5-bookworm AS builder
 
 ENV GOPRIVATE=*.cie-ips.com
 ENV GOINSECURE=*
