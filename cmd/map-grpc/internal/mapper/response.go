@@ -32,6 +32,8 @@ func ToGetFloorInfoResponse(body models.FloorDetail) *mapv1.GetFloorInfoResponse
 			Building:    body.Info.Building,
 			Symbol:      body.Info.Symbol,
 			IsAdmin:     body.Info.IsAdmin,
+			OriginLat:   body.Info.OriginLat,
+			OriginLong:  body.Info.OriginLong,
 		},
 		Rooms: make([]*mapv1.RoomDetail, 0),
 	}
@@ -67,6 +69,8 @@ func ToGetBuildingInfoResponse(body models.Building) *mapv1.GetBuildingInfoRespo
 			Building:    v.Building,
 			Symbol:      v.Symbol,
 			IsAdmin:     v.IsAdmin,
+			OriginLat:   v.OriginLat,
+			OriginLong:  v.OriginLong,
 		}
 	}
 

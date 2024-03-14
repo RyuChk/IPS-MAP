@@ -184,7 +184,7 @@ func (s *service) GetFloorDetailFromKey(ctx context.Context, floor int, building
 	}
 
 	if _floor.IsAdmin && role != constants.AdminRole {
-		return models.FloorDetail{}, status.Error(codes.PermissionDenied, "your not have permission to view this data")
+		return models.FloorDetail{}, status.Error(codes.PermissionDenied, "your do not have permission to view this data")
 	}
 
 	filter := mongodb.Filter{"key": fmt.Sprintf("%s-%d", building, floor)}

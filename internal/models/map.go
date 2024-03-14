@@ -21,6 +21,8 @@ type Floor struct {
 	IsAdmin     bool      `bson:"is_admin"`   //Only admin can view
 	CreatedAt   time.Time `bson:"created_at"` //Create time
 	UpdatedAt   time.Time `bson:"updated_at"` //Update time
+	OriginLat   float64   `bson:"origin_lat"`
+	OriginLong  float64   `bson:"origin_long"`
 }
 
 type FloorDetail struct {
