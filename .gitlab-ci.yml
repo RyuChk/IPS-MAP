@@ -16,8 +16,6 @@ variables:
   GOPRIVATE: "git.cie-ips.com"
   GOINSECURE: "*"
   SERVICE_NAME: map-service
-  # HTTP_PROXY: http://go-athens-athens-proxy.go-athens.svc.cluster.local
-  # HTTPS_PROXY: https://go-proxy.cie-ips.com
   GOPROXY: https://go-proxy.cie-ips.com
   SKIP_BUILD:
     description: Skip build docker image
@@ -127,7 +125,6 @@ release:
   retry: 2
   extends:
     - .deploy-argo
-  image: ubuntu:22.04
   variables:
     NAMESPACE: development
     AUTHOR: $CI_COMMIT_AUTHOR
