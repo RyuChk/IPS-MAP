@@ -23,6 +23,7 @@ type Floor struct {
 	UpdatedAt   time.Time `bson:"updated_at"` //Update time
 	OriginLat   float64   `bson:"origin_lat"`
 	OriginLong  float64   `bson:"origin_long"`
+	MapUrl      string    `bson:"map_url"`
 }
 
 type FloorDetail struct {
