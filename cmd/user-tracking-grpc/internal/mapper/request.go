@@ -15,6 +15,7 @@ func MapRequestToOnlineUserModel(req *mapv1.AddUpdateOnlineUserRequest) models.O
 			Y: float64(req.Position.Y),
 			Z: float64(req.Position.Z),
 		},
+		Label:     req.Label,
 		Timestamp: req.Timestamp.AsTime(),
 	}
 }

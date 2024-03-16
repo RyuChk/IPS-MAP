@@ -18,6 +18,9 @@ func MapOnlineUserToFetchOnlineResponse(users *[]models.OnlineUser) *mapv1.Fetch
 				Y: float32(v.Coordinate.Y),
 				Z: float32(v.Coordinate.Z),
 			},
+			Label:     v.Label,
+			Building:  v.Building,
+			Floor:     int32(v.Floor),
 			Timestamp: timestamppb.New(v.Timestamp),
 		}
 	}

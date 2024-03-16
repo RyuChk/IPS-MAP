@@ -9,6 +9,7 @@ type OnlineUser struct {
 	Building    string    `json:"building"`
 	Floor       int       `json:"floor"`
 	Coordinate  Position  `json:"coordinate"`
+	Label       string    `json:"label"`
 	Timestamp   time.Time `json:"timestamp"`
 }
 
