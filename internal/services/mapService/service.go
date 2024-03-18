@@ -48,7 +48,7 @@ func ProvideMapURLService(minio minio.Service, buildingCollectionRepo buildingco
 }
 
 func (s *service) GetFloor(ctx context.Context, building string, floor int) (models.Floor, error) {
-	floorCachePrefix := constants.FloorCachePrefix.String() + building
+	floorCachePrefix := fmt.Sprintf("%s%s:%d", constants.FloorCachePrefix, building, floor)
 	raw, err := s.redisClient.Get(ctx, floorCachePrefix)
 	if err != nil {
 		filter, _ := mongodb.AddFilter(mongodb.Filter{"building": building}, mongodb.Filter{"floor": floor})
