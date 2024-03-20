@@ -72,6 +72,7 @@ func ToGetBuildingInfoResponse(body models.Building) *mapv1.GetBuildingInfoRespo
 			IsAdmin:     v.IsAdmin,
 			OriginLat:   v.OriginLat,
 			OriginLong:  v.OriginLong,
+			MapUrl:      v.MapUrl,
 		}
 	}
 
